@@ -15,24 +15,27 @@ struct SetCardGameView: View {
     var body: some View {
         VStack {
             if isGameStarted {
+                
                 Grid(viewModel.cards){ card in
                     CardView(card: card, viewModel: viewModel)
-                       
-                 
                                 .onTapGesture {
                                 self.viewModel.choose(card: card)
                                 
                                 }
                         .scaleEffect(card.isChosen ? 1.05 : 1)
                 }
+
                 .padding()
-                .transition(AnyTransition.offset(x: 2300, y:2000))
-                .animation(.easeOut(duration: 0.5))
             }
-            Button(action: viewModel.addCards) {
-                Text("Deal cards")
+            Button {
+                viewModel.addCards()
             }
-        }.onAppear(){
+            label: {
+                Text("Deal more cards")
+            }
+           
+        }
+        .onAppear(){
             isGameStarted.toggle()
         }
     }

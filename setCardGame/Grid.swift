@@ -22,20 +22,28 @@ struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     var body: some View {
         GeometryReader { geometry in
             self.body(for: GridLayout(itemCount: self.items.count, in: geometry.size))
-            }
+       
+
         }
+    }
         
         private func body(for layout: GridLayout) -> some View {
             ForEach(items) { item in
-                self.body(for: item, in: layout)
+                
+                self.body(for: item, in: layout) .transition(AnyTransition.offset(x: 0, y: -1000)).animation(.easeInOut(duration: 2))
+                  
+//                animation(.easeOut(duration: 2))
             }
+         
         }
     
     private func body(for item: Item, in layout: GridLayout) -> some View {
         let index = items.firstIndex(matching: item)
+
         return viewForItem(item)
             .frame(width: layout.itemSize.width, height: layout.itemSize.height)
             .position(layout.location(ofItemAt: index!))
+
     }
     
 

@@ -31,14 +31,11 @@ struct SetCardGameModel {
 
                 if(chosenCards == 0) {
                     firstCard = card
-                    print("first card \(firstCard)" )
                     chosenCards += 1
                 } else if(chosenCards == 1) {
                     secondCard = card
-                    print("second card \(secondCard)" )
                     chosenCards += 1
                 } else {
-                    print(card)
                     removeSet(firstCard: firstCard, secondCard: secondCard, thirdCard: card)
                 }
              
@@ -54,17 +51,26 @@ struct SetCardGameModel {
     mutating func removeSet(firstCard: Card, secondCard: Card, thirdCard: Card) {
         
         
-        if(firstCard.color == secondCard.color && firstCard.color == secondCard.color) {
+        if(firstCard.color == secondCard.color && firstCard.color == thirdCard.color) {
         
             cards.remove(at: cards.firstIndex(matching: firstCard)!)
             cards.remove(at: cards.firstIndex(matching: secondCard)!)
             cards.remove(at: cards.firstIndex(matching: thirdCard)!)
             chosenCards = 0
+            
         }else if(firstCard.shape == secondCard.shape && firstCard.shape == thirdCard.shape) {
             cards.remove(at: cards.firstIndex(matching: firstCard)!)
             cards.remove(at: cards.firstIndex(matching: secondCard)!)
             cards.remove(at: cards.firstIndex(matching: thirdCard)!)
             chosenCards = 0
+            
+
+
+        } else {
+            cards[cards.firstIndex(matching: firstCard)!].isChosen = false
+            cards[cards.firstIndex(matching: secondCard)!].isChosen = false
+            chosenCards = 1
+            self.firstCard = thirdCard
         }
     }
     
