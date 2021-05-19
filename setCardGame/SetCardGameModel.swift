@@ -16,6 +16,8 @@ struct SetCardGameModel {
     var firstCard: Card
     var secondCard: Card
     
+    var dealtCard: Int = 12
+    
     
     mutating func choose(card: Card) {
         let chosenCard = cards.firstIndex(matching: card)
@@ -56,12 +58,14 @@ struct SetCardGameModel {
             cards.remove(at: cards.firstIndex(matching: firstCard)!)
             cards.remove(at: cards.firstIndex(matching: secondCard)!)
             cards.remove(at: cards.firstIndex(matching: thirdCard)!)
+            dealtCardAmount -= 3
             chosenCards = 0
             
         }else if(firstCard.shape == secondCard.shape && firstCard.shape == thirdCard.shape) {
             cards.remove(at: cards.firstIndex(matching: firstCard)!)
             cards.remove(at: cards.firstIndex(matching: secondCard)!)
             cards.remove(at: cards.firstIndex(matching: thirdCard)!)
+            dealtCardAmount -= 3
             chosenCards = 0
             
 
@@ -123,6 +127,7 @@ struct SetCardGameModel {
     mutating func addCards() {
         if( dealtCardAmount < 82) {
             dealtCardAmount += 3
+            dealtCard += 3
         }
     }
     

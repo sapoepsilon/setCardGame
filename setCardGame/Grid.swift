@@ -30,7 +30,7 @@ struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
         private func body(for layout: GridLayout) -> some View {
             ForEach(items) { item in
                 
-                self.body(for: item, in: layout) .transition(AnyTransition.offset(x: 0, y: -1000)).animation(.easeInOut(duration: 2))
+                self.body(for: item, in: layout)   .transition(AnyTransition.offset(x: 0, y: 100))
                   
 //                animation(.easeOut(duration: 2))
             }

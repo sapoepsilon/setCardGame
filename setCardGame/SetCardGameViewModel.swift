@@ -26,7 +26,13 @@ var cards: Array<SetCardGameModel.Card> {
     model.dealCards(Cards: model.cards)
     }
     
+    var cardDeck: Array<SetCardGameModel.Card> {
+        model.cards
+    }
     
+    var dealtCard: Int {
+        model.dealtCard
+    }
     
     func choose(card: SetCardGameModel.Card) {
         model.choose(card: card)
@@ -34,6 +40,10 @@ var cards: Array<SetCardGameModel.Card> {
     
     func addCards() {
         model.addCards()
+    }
+    
+    func newGame() {
+        model = SetCardGameViewModel.createGame()
     }
 }
 
